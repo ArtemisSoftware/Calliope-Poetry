@@ -11,7 +11,7 @@
         android:label="title_fragment"
         tools:layout="@layout/title_fragment" >
         <action
-            android:id="@+id/action_titleFragment_to_gameFragment2"
+            android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
     <fragment
@@ -20,7 +20,7 @@
         android:label="game_fragment"
         tools:layout="@layout/game_fragment" >
         <action
-            android:id="@+id/action_gameFragment_to_scoreFragment2"
+            android:id="@+id/action_gameFragment_to_scoreFragment"
             app:destination="@id/scoreFragment" />
     </fragment>
     <fragment
@@ -29,7 +29,7 @@
         android:label="score_fragment"
         tools:layout="@layout/score_fragment" >
         <action
-            android:id="@+id/action_scoreFragment_to_gameFragment2"
+            android:id="@+id/action_scoreFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
 </navigation>

@@ -4,6 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".game.GameFragment">
 
+
+    <data>
+
+        <variable
+            name="gameViewModel"
+            type="com.artemissoftware.calliopepoetry.game.GameViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
         android:layout_width="match_parent"
@@ -42,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/word_is_text"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="&quot;Tuna&quot;" />
+            android:text="@{@string/quote_format(gameViewModel.word)}" />
 
         <TextView
             android:id="@+id/timer_text"
