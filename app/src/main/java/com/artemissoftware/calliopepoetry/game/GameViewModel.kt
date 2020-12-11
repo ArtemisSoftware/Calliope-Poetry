@@ -1,10 +1,9 @@
 package com.artemissoftware.calliopepoetry.game
 
 import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 
 class GameViewModel : ViewModel() {
 
@@ -27,6 +26,30 @@ class GameViewModel : ViewModel() {
     private val _word = MutableLiveData<String>()
     val word: LiveData<String>
         get() = _word
+
+    // The current score
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
+
+
+    // Countdown time
+    private val _currentTime = MutableLiveData<Long>()
+    val currentTime: LiveData<Long>
+        get() = _currentTime
+
+    // The String version of the current time
+    val currentTimeString = Transformations.map(currentTime) { time ->
+        DateUtils.formatElapsedTime(time)
+    }
+
+
+    // Event which triggers the end of the game
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
+
+
 
 
 
@@ -69,8 +92,8 @@ class GameViewModel : ViewModel() {
 
     init {
         _word.value = ""
-//        _score.value = 0
-//        Log.i("GameViewModel", "GameViewModel created!")
+        _score.value = 0
+
         resetList()
         nextWord()
 
@@ -78,17 +101,32 @@ class GameViewModel : ViewModel() {
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
 
             override fun onTick(millisUntilFinished: Long) {
-//                _currentTime.value = millisUntilFinished/ONE_SECOND
+                _currentTime.value = millisUntilFinished/ONE_SECOND
             }
 
             override fun onFinish() {
-//                _currentTime.value = DONE
-//                onGameFinish()
+                _currentTime.value = DONE
+                onGameFinish()
             }
         }
 
         timer.start()
     }
+
+
+
+
+    /** Methods for updating the UI **/
+    fun onSkip() {
+        _score.value = (_score.value)?.minus(1)
+        nextWord()
+    }
+
+    fun onCorrect() {
+        _score.value = (_score.value)?.plus(1)
+        nextWord()
+    }
+
 
 
     /**
@@ -102,6 +140,17 @@ class GameViewModel : ViewModel() {
             //Select and remove a _word from the list
             _word.value = wordList.removeAt(0)
         }
+    }
+
+
+    /** Method for the game completed event **/
+
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
+    }
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
     }
 
 

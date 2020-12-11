@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
             android:id="@+id/word_is_text"
             android:layout_width="wrap_content"
@@ -64,6 +65,7 @@
             android:textColor="@color/grey_text_color"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:text="@{gameViewModel.currentTimeString}"
             app:layout_constraintBottom_toTopOf="@+id/score_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +81,7 @@
             android:textColor="@color/grey_text_color"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:text="@{@string/score_format(gameViewModel.score)}"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +94,8 @@
             android:layout_marginStart="16dp"
             android:text="@string/skip"
             android:theme="@style/SkipButton"
+
+            android:onClick="@{() -> gameViewModel.onSkip()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +116,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/got_it"
             android:theme="@style/GoButton"
+            android:onClick="@{() -> gameViewModel.onCorrect()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/end_game_button"
             app:layout_constraintStart_toEndOf="@+id/skip_button"
@@ -123,9 +129,12 @@
             android:layout_marginEnd="16dp"
             android:text="@string/end_game"
             android:theme="@style/SkipButton"
+            android:onClick="@{() -> gameViewModel.onGameFinish()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
