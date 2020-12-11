@@ -5,8 +5,11 @@ Words game app
 
 App to explore LiveData, MutableLiveData, MediatorLiveData and Transformations.map
 
-## App preview:
+## App preview
 
-Image #1            
+Image #1                      
 :-------------------------:
-<img src="images/Calliope_Poetry_1.jpg"> 
+<img src="images/Calliope_Poetry_1.jpg" height="50%" width="70%">    | 
+
+
+
