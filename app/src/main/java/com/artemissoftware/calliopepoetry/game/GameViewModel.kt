@@ -50,7 +50,9 @@ class GameViewModel : ViewModel() {
         get() = _eventGameFinish
 
 
-
+    /**
+     * Metivation message
+     */
     private val _motivationMessage = MediatorLiveData<String>().apply {
 
         fun motivatePlayer(){
@@ -84,9 +86,10 @@ class GameViewModel : ViewModel() {
         }
     }
 
-
     val motivationMessage: LiveData<String>
         get() = _motivationMessage
+
+
 
 
     // The list of words - the front of the list is the next _word to guess
