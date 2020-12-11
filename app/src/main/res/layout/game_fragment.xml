@@ -19,10 +19,27 @@
         android:layout_height="match_parent">
 
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="center"
+            android:scrollY="-200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/calliope" />
+
+
         <TextView
             android:id="@+id/word_is_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif"
             android:text="@string/word_is"
@@ -33,7 +50,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.13999999"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
@@ -53,6 +71,19 @@
             app:layout_constraintTop_toBottomOf="@+id/word_is_text"
             app:layout_constraintVertical_chainStyle="packed"
             android:text="@{@string/quote_format(gameViewModel.word)}" />
+
+
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/word_text"
+            android:text="@{@string/quote_format(gameViewModel.hint)}"  />
+
 
         <TextView
             android:id="@+id/timer_text"
@@ -133,6 +164,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
+
 
 
 

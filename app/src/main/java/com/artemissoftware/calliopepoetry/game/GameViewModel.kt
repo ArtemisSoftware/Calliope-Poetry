@@ -27,6 +27,18 @@ class GameViewModel : ViewModel() {
     val word: LiveData<String>
         get() = _word
 
+
+    // The current _hint
+    val hint: LiveData<String> = Transformations.map(word) {
+
+        val filteredWord = it.filter { !it.isWhitespace() }
+        val randomPosition = (1..filteredWord.length).random()
+
+        "Current word has " + filteredWord.length + " letters" +
+                "\nThe letter at position " + randomPosition + " is " +
+                filteredWord.get(randomPosition - 1).toUpperCase()
+    }
+
     // The current score
     private val _score = MutableLiveData<Int>()
     val score: LiveData<Int>
@@ -102,27 +114,16 @@ class GameViewModel : ViewModel() {
      */
     private fun resetList() {
         wordList = mutableListOf(
-            "queen",
-            "hospital",
-            "basketball",
-            "cat",
-            "change",
-            "snail",
-            "soup",
-            "calendar",
-            "sad",
-            "desk",
-            "guitar",
-            "home",
-            "railway",
-            "zebra",
-            "jelly",
-            "car",
-            "crow",
-            "trade",
-            "bag",
-            "roll",
-            "bubble"
+            "Adamantine",
+            "Aegis",
+            "Caduceus",
+            "Thyrsus",
+            "Harpe",
+            "Golden Fleece",
+            "Cornucopia",
+            "Poseidon's Trident",
+            "Argo",
+            "Pandora's Box"
         )
         wordList.shuffle()
     }
