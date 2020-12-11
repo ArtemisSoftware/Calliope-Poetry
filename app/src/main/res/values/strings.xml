@@ -2,7 +2,7 @@
     <string name="app_name">CalliopePoetry</string>
     <string name="skip">Skip</string>
     <string name="play_again">Play Again</string>
-    <string name="you_scored">You Scored</string>
+    <string name="you_scored">Calliope congratulates you. Your score is</string>
     <string name="title_text">guess the word!</string>
     <string name="play_button">Play</string>
     <string name="get_ready">Get ready to</string>
