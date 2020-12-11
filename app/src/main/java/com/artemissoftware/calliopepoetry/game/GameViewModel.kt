@@ -39,7 +39,7 @@ class GameViewModel : ViewModel() {
         get() = _currentTime
 
     // The String version of the current time
-    val currentTimeString = Transformations.map(currentTime) { time ->
+    val currentTimeString: LiveData<String> = Transformations.map(currentTime) { time ->
         DateUtils.formatElapsedTime(time)
     }
 
@@ -51,7 +51,42 @@ class GameViewModel : ViewModel() {
 
 
 
+    private val _motivationMessage = MediatorLiveData<String>().apply {
 
+        fun motivatePlayer(){
+
+            score.value?.let {
+                if(it == 2){
+                    value = "My poetry is godlike"
+                }
+            }
+
+        }
+
+        fun advicePlayer(){
+
+            currentTime.value?.let {
+
+                if(it == (COUNTDOWN_TIME/2/ONE_SECOND)){
+                    value = "Time is running out"
+                }
+
+            }
+        }
+
+
+        addSource(score){
+            motivatePlayer()
+        }
+
+        addSource(currentTime){
+            advicePlayer()
+        }
+    }
+
+
+    val motivationMessage: LiveData<String>
+        get() = _motivationMessage
 
 
     // The list of words - the front of the list is the next _word to guess

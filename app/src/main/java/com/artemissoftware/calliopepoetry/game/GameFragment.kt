@@ -42,6 +42,11 @@ class GameFragment : Fragment(R.layout.game_fragment) {
             if (it) gameFinished()
         })
 
+
+        viewModel.motivationMessage.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+        })
+
     }
 
 
